@@ -38,7 +38,7 @@ pub struct CreateRoomResponseV1 {}
 /// `to_event_id`. if `limit` is set, the server will return at most recent
 /// events by limit.
 #[derive(Debug, Serialize, Deserialize)]
-pub struct SyncRommRequestV1 {
+pub struct SyncRoomRequestV1 {
     room_id: String,
     from_event_id: Option<String>,
     to_event_id: Option<String>,
@@ -60,6 +60,7 @@ pub struct SyncRoomResponseV1 {}
 /// is invalid.
 #[derive(Debug, Serialize, Deserialize)]
 pub struct SendMessagesRequestV1 {
+    room_id: String,
     messages: Vec<MessageV1>,
 }
 

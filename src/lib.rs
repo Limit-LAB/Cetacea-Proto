@@ -1,6 +1,7 @@
 #![feature(associated_type_defaults)]
 
 pub mod client;
+pub mod server;
 
 pub mod error_code;
 pub mod extensions;
