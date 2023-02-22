@@ -1,4 +1,5 @@
 #![feature(associated_type_defaults)]
+#![feature(const_type_name)]
 
 pub mod client;
 pub mod server;
