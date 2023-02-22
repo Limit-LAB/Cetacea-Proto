@@ -3,11 +3,11 @@ use serde::{de::DeserializeOwned, Deserialize, Serialize};
 pub mod group;
 pub mod sync;
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ClientEventSendHeader {
-    event_id: String,
-    event_type: String,
-    previous_event_id: Option<String>,
+    pub event_id: String,
+    pub event_type: String,
+    pub previous_event_id: Option<String>,
 }
 
 /// The client event get request.
@@ -19,7 +19,7 @@ pub struct ClientEventSendHeader {
 ///
 /// may return [`crate::error_code::ErrorCode::InvalidEventId`] if the event id
 /// is invalid.
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ClientEventGetRequest {
     pub event_id: String,
 }

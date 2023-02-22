@@ -1,13 +1,15 @@
-#[derive(Debug, Serialize, Deserialize)]
+use serde::{Deserialize, Serialize};
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct NFTStickerMessagePart {
-    nft_address: String,
-    emoji: String,
+    pub nft_address: String,
+    pub emoji: String,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct NFTStickerReactionPart {
     /// the event id.
-    react_to: String,
-    nft_address: String,
-    emoji: String,
+    pub react_to: String,
+    pub nft_address: String,
+    pub emoji: String,
 }

@@ -1,6 +1,6 @@
 use serde::{Deserialize, Serialize};
 
-#[derive(Debug, Serialize, Deserialize, PartialEq, Eq, PartialOrd, Ord)]
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq, PartialOrd, Ord)]
 pub enum Extensions {
     // room methods
     #[doc = include_str!("../../docs/extensions/room_v1.md")]
@@ -32,13 +32,14 @@ pub enum Extensions {
 }
 
 pub mod mmm_v1;
+pub mod nft_stickers_v1;
 pub mod room_v1;
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 
 pub struct CheckSupportedExtensionsRequest {}
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct CheckSupportedExtensionsResponse {
     pub extensions: Vec<Extensions>,
 }

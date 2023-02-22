@@ -5,7 +5,7 @@ pub mod wallet;
 
 /// The common login request header.
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct CommonLoginRequestHeader {
     /// The device id.
     pub device_id: String,

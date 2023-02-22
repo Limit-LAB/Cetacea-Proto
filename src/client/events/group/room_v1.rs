@@ -6,25 +6,25 @@ use serde::{Deserialize, Serialize};
 
 use crate::extensions::room_v1::*;
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct CreateAliasRequestV1 {
-    header: super::super::ClientEventSendHeader,
+    pub header: super::super::ClientEventSendHeader,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct CreateAliasResponseV1 {}
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct CreateRoomRequestV1 {
-    header: super::super::ClientEventSendHeader,
-    extensions: crate::extensions::Extensions,
-    extensions_data: BTreeMap<crate::extensions::Extensions, String>,
-    inherit_from: Option<InheritRoomFromV1>,
-    join_rule: RoomJoinRuleV1,
-    join_restrictions: Option<RoomJoinRestrictionV1>,
+    pub header: super::super::ClientEventSendHeader,
+    pub extensions: crate::extensions::Extensions,
+    pub extensions_data: BTreeMap<crate::extensions::Extensions, String>,
+    pub inherit_from: Option<InheritRoomFromV1>,
+    pub join_rule: RoomJoinRuleV1,
+    pub join_restrictions: Option<RoomJoinRestrictionV1>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct CreateRoomResponseV1 {}
 
 /// The sync room request.
@@ -37,16 +37,16 @@ pub struct CreateRoomResponseV1 {}
 /// set, the server will return the events between `from_event_id` and
 /// `to_event_id`. if `limit` is set, the server will return at most recent
 /// events by limit.
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct SyncRoomRequestV1 {
-    room_id: String,
-    from_event_id: Option<String>,
-    to_event_id: Option<String>,
-    limit: Option<u32>,
+    pub room_id: String,
+    pub from_event_id: Option<String>,
+    pub to_event_id: Option<String>,
+    pub limit: Option<u32>,
 }
 
 /// The sync room response.
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct SyncRoomResponseV1 {}
 
 /// The send messages request.
@@ -58,19 +58,19 @@ pub struct SyncRoomResponseV1 {}
 ///
 /// may return [`crate::error_code::ErrorCode::InvalidEventId`] if the event id
 /// is invalid.
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct SendMessagesRequestV1 {
-    room_id: String,
-    messages: Vec<MessageV1>,
+    pub room_id: String,
+    pub messages: Vec<MessageV1>,
 }
 
 /// The send messages response.
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct SendMessagesResponseV1 {}
 
 /// for last shown in room
 /// and for read marker
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct LoginNotifyRequestV1 {
-    header: super::super::ClientEventSendHeader,
+    pub header: super::super::ClientEventSendHeader,
 }

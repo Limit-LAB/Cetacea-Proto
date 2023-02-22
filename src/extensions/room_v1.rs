@@ -1,14 +1,17 @@
 //! impl of [`crate::extensions::Extensions::RoomV1`] required datatypes.
 
-use serde::{Deserialize, Serialize};
+use std::collections::BTreeMap;
 
-#[derive(Debug, Serialize, Deserialize)]
+use serde::{Deserialize, Serialize};
+use serde_json::Value;
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct InheritRoomFromV1 {
-    room_id: String,
-    event_id: String,
+    pub room_id: String,
+    pub event_id: String,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub enum RoomJoinRuleV1 {
     Public,
     Private,
@@ -16,39 +19,48 @@ pub enum RoomJoinRuleV1 {
     Knock,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub enum RoomJoinRestrictionV1 {
     ConnectedWallet,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub enum EncryptionMethod {
     /// aes256 with password.
     AES256,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct TextMessagePartV1 {
-    text: String,
+    pub text: String,
     /// encryption method used to encrypt the text.
     /// if not set, the text is not encrypted.
     /// if set, the text is encrypted.
-    encryption_method: Option<EncryptionMethod>,
+    pub encryption_method: Option<EncryptionMethod>,
 }
 
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ReactionMessagePartV1 {
     /// the event id.
-    react_to: String,
+    pub react_to: String,
     /// the reaction emoji.
-    reaction: String,
+    pub reaction: String,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum MessagePartV1 {
+    Text(TextMessagePartV1),
+    Reaction(ReactionMessagePartV1),
+    Other(BTreeMap<String, Value>),
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct MessageV1 {
     /// the event id.
-    reply_to: Option<String>,
+    pub reply_to: Option<String>,
     /// pin the message to the top of the room.
-    pin: bool,
+    pub pin: bool,
     /// the message parts.
-    message_parts: Vec<serde_json::Value>,
+    pub message_parts: Vec<MessagePartV1>,
 }

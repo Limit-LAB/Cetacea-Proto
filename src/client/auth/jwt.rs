@@ -16,7 +16,7 @@ use serde::{Deserialize, Serialize};
 ///
 /// may return [`crate::error_code::ErrorCode::InvalidJWTToken`] if the jwt
 /// token is invalid.
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct JwtLoginRequest {
     pub header: super::CommonLoginRequestHeader,
     pub jwt_token: String,
