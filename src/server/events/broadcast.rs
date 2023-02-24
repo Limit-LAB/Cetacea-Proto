@@ -1,3 +1,5 @@
+/// message boardcast to all servers
+/// hosting the room
 pub struct BroadCastEvent {
     pub server_id: String,
     pub event_id: String,
