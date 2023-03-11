@@ -2,6 +2,8 @@
 
 use serde::{Deserialize, Serialize};
 
+use super::id::*;
+
 
 #[derive(Debug, Serialize, Deserialize)]
 struct Message {
@@ -9,30 +11,6 @@ struct Message {
 }
 
 
-#[derive(Debug, Serialize, Deserialize)]
-struct UUID();
-
-
-#[derive(Debug, Serialize, Deserialize)]
-struct ServerName();
-
-
-#[derive(Debug, Serialize, Deserialize)]
-struct UserId (pub UUID, pub ServerName);
-
-
-#[derive(Debug, Serialize, Deserialize)]
-struct ChannelId (pub UUID, pub ServerName);
-
-
-#[derive(Debug, Serialize, Deserialize)]
-enum SubjectId {
-  User(UserId),
-  ChannelId(ChannelId),
-}
-
-#[derive(Debug, Serialize, Deserialize)]
-struct MessageId (pub UUID);
 
 
 #[derive(Debug, Serialize, Deserialize)]
@@ -57,4 +35,16 @@ pub struct MessagePushResponse {
   message: Message,
   sender: UserId,
   reciver: SubjectId,
+}
+
+
+#[derive(Debug, Serialize, Deserialize)]
+pub struct GetMissingMessageRequest {
+  origin: ServerName,
+  sender: UserId,
+}
+
+#[derive(Debug, Serialize, Deserialize)]
+pub struct GetMissingMessageResponse {
+  message_list: Vec<Message>,
 }
