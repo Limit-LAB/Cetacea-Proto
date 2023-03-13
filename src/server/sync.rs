@@ -4,47 +4,40 @@ use serde::{Deserialize, Serialize};
 
 use super::id::*;
 
-
 #[derive(Debug, Serialize, Deserialize)]
 struct Message {
-  // todo
+    // todo
 }
 
-
-
-
 #[derive(Debug, Serialize, Deserialize)]
-struct Signature (pub String);
-
+struct Signature(pub String);
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct MessagePushRequest {
-  prev_message_id: MessageId,
-  signature: Signature,
-  message: Message,
-  sender: UserId,
-  reciver: SubjectId,
+    prev_message_id: MessageId,
+    signature: Signature,
+    message: Message,
+    sender: UserId,
+    receiver: SubjectId,
 }
-
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct MessagePushResponse {
-  prev_message_id: MessageId,
-  signature: Signature,
-  origin: ServerName,
-  message: Message,
-  sender: UserId,
-  reciver: SubjectId,
+    prev_message_id: MessageId,
+    signature: Signature,
+    origin: ServerName,
+    message: Message,
+    sender: UserId,
+    receiver: SubjectId,
 }
-
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct GetMissingMessageRequest {
-  origin: ServerName,
-  sender: UserId,
+    origin: ServerName,
+    sender: UserId,
 }
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct GetMissingMessageResponse {
-  message_list: Vec<Message>,
+    message_list: Vec<Message>,
 }
