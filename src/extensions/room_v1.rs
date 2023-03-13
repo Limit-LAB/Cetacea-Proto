@@ -1,6 +1,6 @@
 //! impl of [`crate::extensions::Extensions::RoomV1`] required datatypes.
 
-use serde::{Deserialize, Serialize, Serializer};
+use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct InheritRoomFromV1 {
@@ -107,8 +107,8 @@ fn test_extensibility() {
 
     let rmp = rmp_serde::to_vec_named(&messagev1).unwrap();
     println!("{:?}", rmp);
-    let messagev1: serde_json::Value = rmp_serde::from_read_ref(&rmp).unwrap();
+    let messagev1: serde_json::Value = rmp_serde::from_slice(&rmp).unwrap();
     println!("{:#?}", messagev1);
-    let messagev1: MessageV1 = rmp_serde::from_read_ref(&rmp).unwrap();
+    let messagev1: MessageV1 = rmp_serde::from_slice(&rmp).unwrap();
     println!("{:#?}", messagev1);
 }
