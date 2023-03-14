@@ -2,47 +2,18 @@ use serde::{Deserialize, Serialize};
 
 use super::id::*;
 
+/// An user in server A want to join a channel in server B.
 #[derive(Debug, Serialize, Deserialize)]
-pub struct JoinChannelRequest {
-    origin: ServerName,
-    sender: UserId,
+pub struct CrossJoinChannelRequest {
+    /// the server name of the server that the user in.
+    from: ServerName,
+    /// the server name of the server that the channel in.
+    to: ServerName,
     channel: ChannelId,
-    // signature: Signature,
-    // message: Message,
 }
 
 #[derive(Debug, Serialize, Deserialize)]
-pub struct JoinChannelResponse {
-    info: String,
-}
-
-#[derive(Debug, Serialize, Deserialize)]
-pub struct InvitingToChannelRequest {
-    origin: ServerName,
-    sender: UserId,
-    membership: UserId,
-    channel: ChannelId,
-    // signature: Signature,
-    // message: Message,
-}
-
-#[derive(Debug, Serialize, Deserialize)]
-pub struct InvitingToChannelResponse {
-    info: String,
-    // todo
-}
-
-#[derive(Debug, Serialize, Deserialize)]
-pub struct LeavingChannelRequest {
-    origin: ServerName,
-    sender: UserId,
-    channel: ChannelId,
-    // signature: Signature,
-    // message: Message,
-}
-
-#[derive(Debug, Serialize, Deserialize)]
-pub struct LeavingChannelResponse {
+pub struct CrossJoinChannelResponse {
     info: String,
 }
 
