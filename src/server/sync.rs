@@ -9,7 +9,7 @@ struct Signature(pub String);
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct MessagePushRequest {
-    prev_message_id: MessageId,
+    // prev_message_id: MessageId,
     signature: Signature,
     message: String,
     sender: UserId,
@@ -18,23 +18,26 @@ pub struct MessagePushRequest {
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct MessagePushResponse {
-    prev_message_id: MessageId,
-    signature: Signature,
-    origin: ServerName,
-    message: String,
-    sender: UserId,
-    receiver: SubjectId,
+    // prev_message_id: MessageId,
+    // signature: Signature,
+    // origin: ServerName,
+    // message: String,
+    // sender: UserId,
+    // receiver: SubjectId,
 }
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct GetMissingMessageRequest {
     origin: ServerName,
-    sender: UserId,
-    // TODO: what to get? from where? to where?
+    receiver: UserId,
+    sender: SubjectId,
+    // maybe timestamp
+    lower_message: MessageId,
+    upper_message: Option<MessageId>,
+    // event_type: EventType
 }
 
-// TODO: look lib.rs see how we stream the response.
 #[derive(Debug, Serialize, Deserialize)]
 pub struct GetMissingMessageResponse {
-    message_list: Vec<String>,
+    message: String,
 }
