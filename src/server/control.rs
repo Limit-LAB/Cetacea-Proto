@@ -1,3 +1,5 @@
+#![doc = include_str!("../../docs/control.md")]
+
 use serde::{Deserialize, Serialize};
 
 use super::id::*;
@@ -14,17 +16,24 @@ pub struct CrossJoinChannelRequest {
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct CrossJoinChannelResponse {
-    info: String,
+    /// status info (send success or fail).
+    status: String,
+    // info: String,
 }
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct RegisterPublicChannelRequest {
+    /// the server name of the server that the user in.
     origin: ServerName,
+    /// the user id sent by the application.
     sender: UserId,
+
     channel: ChannelId,
 }
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct RegisterPublicChannelResponse {
-    info: String,
+    /// status info (send success or fail).
+    status: String,
+    // info: String,
 }
