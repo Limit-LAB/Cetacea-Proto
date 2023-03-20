@@ -19,15 +19,15 @@ pub trait ResponseMessage<T: Response>: Serialize + DeserializeOwned {
     type Response = Result<T, ErrorType>;
 }
 
-struct StreamRequest<T: RequestMessage> {
-    request_id: String,
-    request: T,
+pub struct StreamRequest<T: RequestMessage> {
+    pub request_id: String,
+    pub request: T,
 }
 
-struct StreamResponse<T: Response> {
-    request_id: String,
-    count: u32,
-    response: T,
+pub struct StreamResponse<T: Response> {
+    pub request_id: String,
+    pub count: u32,
+    pub response: T,
 }
 
 #[derive(Serialize, Deserialize, Clone, Debug, Error)]
