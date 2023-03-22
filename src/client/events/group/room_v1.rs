@@ -4,7 +4,10 @@ use std::collections::BTreeMap;
 
 use serde::{Deserialize, Serialize};
 
-use crate::extensions::room_v1::*;
+use crate::{
+    client::events::ClientEventSendHeader,
+    extensions::{room_v1::*, Extensions},
+};
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct CreateAliasRequestV1 {
@@ -16,9 +19,9 @@ pub struct CreateAliasResponseV1 {}
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct CreateRoomRequestV1 {
-    header: super::super::ClientEventSendHeader,
-    extensions: crate::extensions::Extensions,
-    extensions_data: BTreeMap<crate::extensions::Extensions, String>,
+    header: ClientEventSendHeader,
+    extensions: Extensions,
+    extensions_data: BTreeMap<Extensions, String>,
     inherit_from: Option<InheritRoomFromV1>,
     join_rule: RoomJoinRuleV1,
     join_restrictions: Option<RoomJoinRestrictionV1>,
@@ -72,5 +75,5 @@ pub struct SendMessagesResponseV1 {}
 /// and for read marker
 #[derive(Debug, Serialize, Deserialize)]
 pub struct LoginNotifyRequestV1 {
-    header: super::super::ClientEventSendHeader,
+    header: ClientEventSendHeader,
 }

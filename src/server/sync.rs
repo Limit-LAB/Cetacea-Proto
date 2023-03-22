@@ -16,7 +16,7 @@ pub struct MessagePushRequest {
     message: String,
     /// user who wants to send a message
     sender: UserId,
-    /// reciverid (channel id or user id)
+    /// receiver id (channel id or user id)
     receiver: SubjectId,
 }
 
