@@ -87,11 +87,11 @@ macro_rules! impl_message_v1 {
             }
         }
 
-        impl Into<MessagePartV1> for $t {
-            fn into(self) -> MessagePartV1 {
+        impl From<$t> for MessagePartV1 {
+            fn from(t: $t) -> MessagePartV1 {
                 MessagePartV1 {
-                    type_: std::any::type_name::<Self>().to_string(),
-                    data: serde_json::to_value(self).unwrap(),
+                    type_: std::any::type_name::<$t>().to_string(),
+                    data: serde_json::to_value(t).unwrap(),
                 }
             }
         }
