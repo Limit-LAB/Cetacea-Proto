@@ -2,6 +2,14 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Serialize, Deserialize, PartialEq, Eq, PartialOrd, Ord)]
 pub enum Extensions {
+    // user methods
+    #[doc = include_str!("../../docs/extensions/user_v1.md")]
+    UserV1,
+
+    // file methods
+    #[doc = include_str!("../../docs/extensions/upload_v1.md")]
+    UploadV1,
+
     // room methods
     #[doc = include_str!("../../docs/extensions/room_v1.md")]
     RoomV1,
@@ -33,6 +41,7 @@ pub enum Extensions {
 
 pub mod mmm_v1;
 pub mod room_v1;
+pub mod user_v1;
 
 #[derive(Debug, Serialize, Deserialize)]
 

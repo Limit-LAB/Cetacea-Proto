@@ -10,21 +10,12 @@ use crate::{
 };
 
 #[derive(Debug, Serialize, Deserialize)]
-pub struct CreateAliasRequestV1 {
-    header: super::super::ClientEventSendHeader,
-}
-
-#[derive(Debug, Serialize, Deserialize)]
-pub struct CreateAliasResponseV1 {}
-
-#[derive(Debug, Serialize, Deserialize)]
 pub struct CreateRoomRequestV1 {
     header: ClientEventSendHeader,
     extensions: Extensions,
     extensions_data: BTreeMap<Extensions, String>,
     inherit_from: Option<InheritRoomFromV1>,
-    join_rule: RoomJoinRuleV1,
-    join_restrictions: Option<RoomJoinRestrictionV1>,
+    room_info: RoomInfoV1,
 }
 
 #[derive(Debug, Serialize, Deserialize)]
