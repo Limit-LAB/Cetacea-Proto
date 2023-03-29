@@ -1,3 +1,6 @@
+use serde::{Serialize, Deserialize};
+
+#[derive(Debug, Serialize, Deserialize)]
 pub struct UploadRestrictionV1 {
     max_size: u64,
     max_count_per_day: u64,

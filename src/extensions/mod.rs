@@ -42,6 +42,7 @@ pub enum Extensions {
 pub mod mmm_v1;
 pub mod room_v1;
 pub mod user_v1;
+pub mod upload_v1;
 
 #[derive(Debug, Serialize, Deserialize)]
 
