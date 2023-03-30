@@ -37,6 +37,7 @@ pub enum AdminAbilitiesV1 {
     AcceptKnock,
 
     // normal member
+    CouldPinMessages,
     InviteRoomMembers,
     SendMessages,
     ReactMessages,
@@ -68,9 +69,9 @@ pub enum RoomJoinRestrictionV1 {
 #[derive(Debug, Serialize, Deserialize)]
 pub struct MessagePartV1 {
     #[serde(rename = "type")]
-    type_: String,
+    pub type_: String,
     #[serde(flatten)]
-    data: serde_json::Value,
+    pub data: serde_json::Value,
 }
 
 #[macro_export]
@@ -125,11 +126,17 @@ pub struct ReactionMessagePartV1 {
 impl_message_v1!(ReactionMessagePartV1);
 
 #[derive(Debug, Serialize, Deserialize)]
+pub struct PinMessagePartV1 {
+    /// the event id.
+    pin: String,
+    notify: bool,
+}
+impl_message_v1!(PinMessagePartV1);
+
+#[derive(Debug, Serialize, Deserialize)]
 pub struct MessageV1 {
     /// the event id.
     reply_to: Option<String>,
-    /// pin the message to the top of the room.
-    pin: bool,
     /// the message parts.
     message_parts: Vec<MessagePartV1>,
 }
@@ -147,9 +154,9 @@ fn test_extensibility() {
         b: None,
         c: Ok(()),
     };
+    use super::mmm_v1::*;
     let messagev1 = MessageV1 {
         reply_to: None,
-        pin: false,
         message_parts: vec![
             MessagePartV1 {
                 type_: "demo".to_string(),
@@ -163,6 +170,16 @@ fn test_extensibility() {
             ReactionMessagePartV1 {
                 react_to: "123".to_string(),
                 reaction: "👍".to_string(),
+            }
+            .into(),
+            VideoMessagePartV1 {
+                file: FileMessagePartV1 {
+                    url: "baidu.com".to_string(),
+                    mime_type: "mp4".to_string().into(),
+                    name: "video.avi".to_string(),
+                    size: 114514,
+                },
+                thumbnail_url: "baidu.com".to_string().into(),
             }
             .into(),
         ],

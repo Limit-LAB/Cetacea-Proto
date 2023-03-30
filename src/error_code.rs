@@ -9,4 +9,6 @@ pub enum ErrorCode {
     UnsupportWallet,
     InvalidJWTToken,
     UnsupportJWTLogin,
+    InvalidPubkey,
+    UnsupportPubkeyLogin,
 }

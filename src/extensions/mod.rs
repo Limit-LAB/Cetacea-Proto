@@ -27,6 +27,8 @@ pub enum Extensions {
     RTCV1,
 
     // login methods
+    #[doc = include_str!("../../docs/extensions/pubkey_login.md")]
+    PubkeyLogin,
     #[doc = include_str!("../../docs/extensions/jwt_login.md")]
     JWTLogin,
     #[doc = include_str!("../../docs/extensions/wallet_login.md")]

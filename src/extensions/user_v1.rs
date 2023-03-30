@@ -93,7 +93,7 @@ pub struct Friend {
 }
 
 #[derive(Debug, Serialize, Deserialize)]
-struct UserRecordV1 {
+pub struct UserRecordV1 {
     last_login_ts: u64,
     pinged_rooms: Vec<String>,
     last_reads: Vec<LastReadV1>,

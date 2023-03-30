@@ -18,7 +18,7 @@ use crate::{RequestMessage, Response};
 ///
 /// may return [`crate::error_code::ErrorCode::InvalidJWTToken`] if the jwt
 /// token is invalid.
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, PartialEq, Eq)]
 pub struct JwtLoginRequest {
     pub header: super::CommonLoginRequestHeader,
     pub jwt_token: String,
@@ -30,7 +30,7 @@ impl RequestMessage for JwtLoginRequest {}
 ///
 /// may return [`crate::error_code::ErrorCode::InvalidJWTToken`] if the jwt
 /// token is invalid.
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, PartialEq, Eq)]
 pub struct JwtLoginResponse {}
 
 impl Response for JwtLoginResponse {}

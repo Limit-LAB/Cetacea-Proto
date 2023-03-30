@@ -15,9 +15,7 @@ pub trait RequestMessage: Serialize {}
 
 pub trait Response: Serialize + DeserializeOwned {}
 
-pub trait ResponseMessage<T: Response>: Serialize + DeserializeOwned {
-    type Response = Result<T, ErrorType>;
-}
+pub type ResponseMessage<T> = Result<T, ErrorType>;
 
 pub struct StreamRequest<T: RequestMessage> {
     pub request_id: String,
@@ -27,7 +25,7 @@ pub struct StreamRequest<T: RequestMessage> {
 pub struct StreamResponse<T: Response> {
     pub request_id: String,
     pub count: u32,
-    pub response: T,
+    pub response: ResponseMessage<T>,
 }
 
 #[derive(Serialize, Deserialize, Clone, Debug, Error)]
