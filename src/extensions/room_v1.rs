@@ -192,3 +192,13 @@ fn test_extensibility() {
     let messagev1: MessageV1 = rmp_serde::from_slice(&rmp).unwrap();
     println!("{:#?}", messagev1);
 }
+
+/// for showing the current state of the user in the room.
+#[derive(Debug, Serialize, Deserialize)]
+pub enum NotifyEventsV1 {
+    OnEnterRoom,
+    OnLeaveRoom,
+    OnTyping,
+    OnUploadingFiles,
+    ReadToMessage { message_id: String },
+}

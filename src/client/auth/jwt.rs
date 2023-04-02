@@ -18,19 +18,26 @@ use crate::{RequestMessage, Response};
 ///
 /// may return [`crate::error_code::ErrorCode::InvalidJWTToken`] if the jwt
 /// token is invalid.
+///
+/// | limit | yes/no |
+/// | --- | --- |
+/// | rate limit   | yes |
+/// | require auth | no |
+///
+/// POST `/auth/jwt_v1/login`
 #[derive(Debug, Serialize, Deserialize, PartialEq, Eq)]
-pub struct JwtLoginRequest {
+pub struct JwtLoginRequestV1 {
     pub header: super::CommonLoginRequestHeader,
     pub jwt_token: String,
 }
 
-impl RequestMessage for JwtLoginRequest {}
+impl RequestMessage for JwtLoginRequestV1 {}
 
 /// The jwt login response.
 ///
 /// may return [`crate::error_code::ErrorCode::InvalidJWTToken`] if the jwt
 /// token is invalid.
 #[derive(Debug, Serialize, Deserialize, PartialEq, Eq)]
-pub struct JwtLoginResponse {}
+pub struct JwtLoginResponseV1 {}
 
-impl Response for JwtLoginResponse {}
+impl Response for JwtLoginResponseV1 {}

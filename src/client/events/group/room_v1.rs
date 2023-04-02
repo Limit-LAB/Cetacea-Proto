@@ -31,6 +31,16 @@ pub struct CreateRoomResponseV1 {}
 /// set, the server will return the events between `from_event_id` and
 /// `to_event_id`. if `limit` is set, the server will return at most recent
 /// events by limit.
+///
+/// | limit | yes/no |
+/// | --- | --- |
+/// | rate limit   | yes |
+/// | require auth | yes |
+///
+/// may return [`crate::error_code::ErrorCode::InvalidEventId`] if the event id
+/// is invalid.
+///
+/// POST `/client/room_v1/sync`
 #[derive(Debug, Serialize, Deserialize)]
 pub struct SyncRoomRequestV1 {
     room_id: String,
@@ -41,7 +51,9 @@ pub struct SyncRoomRequestV1 {
 
 /// The sync room response.
 #[derive(Debug, Serialize, Deserialize)]
-pub struct SyncRoomResponseV1 {}
+pub struct SyncRoomResponseV1 {
+    messages: Vec<MessageV1>,
+}
 
 /// The send messages request.
 ///
@@ -52,6 +64,7 @@ pub struct SyncRoomResponseV1 {}
 ///
 /// may return [`crate::error_code::ErrorCode::InvalidEventId`] if the event id
 /// is invalid.
+/// POST `/client/room_v1/send_messages`
 #[derive(Debug, Serialize, Deserialize)]
 pub struct SendMessagesRequestV1 {
     room_id: String,
@@ -64,7 +77,10 @@ pub struct SendMessagesResponseV1 {}
 
 /// for last shown in room
 /// and for read marker
+/// mainly for streaming
+///
+/// POST `/client/room_v1/notify`
 #[derive(Debug, Serialize, Deserialize)]
-pub struct LoginNotifyRequestV1 {
-    header: ClientEventSendHeader,
+pub struct NotifyRequestV1 {
+    notify_type: NotifyEventsV1,
 }

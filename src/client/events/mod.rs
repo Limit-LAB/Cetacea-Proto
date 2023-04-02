@@ -10,7 +10,7 @@ pub struct ClientEventSendHeader {
     previous_event_id: Option<String>,
 }
 
-/// The client event get request.
+/// The client event point get request.
 ///
 /// | limit | yes/no |
 /// | --- | --- |
@@ -19,13 +19,15 @@ pub struct ClientEventSendHeader {
 ///
 /// may return [`crate::error_code::ErrorCode::InvalidEventId`] if the event id
 /// is invalid.
+///
+/// POST `/client/events_v1/get`
 #[derive(Debug, Serialize, Deserialize)]
-pub struct ClientEventGetRequest {
+pub struct ClientEventGetRequestV1 {
     pub event_id: String,
 }
 
 /// The client event get response.
-pub struct ClientEventGetResponse {
+pub struct ClientEventGetResponseV1 {
     pub event_id: String,
     pub event_type: String,
     pub previous_event_id: Option<String>,

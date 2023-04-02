@@ -101,3 +101,9 @@ pub struct UserRecordV1 {
     blocked_users: Vec<UserHeaderV1>,
     friends: Vec<Friend>,
 }
+
+#[derive(Debug, Serialize, Deserialize)]
+pub enum UserStatusNotifyEventV1 {
+    Online,
+    Offline,
+}

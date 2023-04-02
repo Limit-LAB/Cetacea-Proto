@@ -5,6 +5,8 @@ pub enum Extensions {
     // user methods
     #[doc = include_str!("../../docs/extensions/user_v1.md")]
     UserV1,
+    #[doc = include_str!("../../docs/extensions/client_event_v1.md")]
+    ClientEventV1,
 
     // file methods
     #[doc = include_str!("../../docs/extensions/upload_v1.md")]
@@ -28,11 +30,11 @@ pub enum Extensions {
 
     // login methods
     #[doc = include_str!("../../docs/extensions/pubkey_login.md")]
-    PubkeyLogin,
+    PubkeyLoginV1,
     #[doc = include_str!("../../docs/extensions/jwt_login.md")]
-    JWTLogin,
+    JWTLoginV1,
     #[doc = include_str!("../../docs/extensions/wallet_login.md")]
-    WalletLogin,
+    WalletLoginV1,
 
     // backup methods
     #[doc = include_str!("../../docs/extensions/backup_s3.md")]
@@ -43,8 +45,8 @@ pub enum Extensions {
 
 pub mod mmm_v1;
 pub mod room_v1;
-pub mod user_v1;
 pub mod upload_v1;
+pub mod user_v1;
 
 #[derive(Debug, Serialize, Deserialize)]
 
