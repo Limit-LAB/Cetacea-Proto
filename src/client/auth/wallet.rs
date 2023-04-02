@@ -15,5 +15,6 @@ use serde::{Deserialize, Serialize};
 /// should use a valid ETH wallet address.
 #[derive(Debug, Serialize, Deserialize)]
 pub struct WalletLoginRequest {
+    #[serde(flatten)]
     pub header: super::CommonLoginRequestHeader,
 }

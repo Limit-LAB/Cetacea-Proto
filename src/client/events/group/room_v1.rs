@@ -11,6 +11,7 @@ use crate::{
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct CreateRoomRequestV1 {
+    #[serde(flatten)]
     header: ClientEventSendHeader,
     extensions: Extensions,
     extensions_data: BTreeMap<Extensions, String>,

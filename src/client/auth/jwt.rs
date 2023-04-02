@@ -27,7 +27,8 @@ use crate::{RequestMessage, Response};
 /// POST `/auth/jwt_v1/login`
 #[derive(Debug, Serialize, Deserialize, PartialEq, Eq)]
 pub struct JwtLoginRequestV1 {
-    pub header: super::CommonLoginRequestHeader,
+    #[serde(flatten)]
+    pub header: Option<super::CommonLoginRequestHeader>,
     pub jwt_token: String,
 }
 

@@ -26,7 +26,6 @@ use crate::{RequestMessage, Response};
 /// POST `/auth/pubkey_v1/login`
 #[derive(Debug, Serialize, Deserialize)]
 pub struct PubkeyLoginRequestV1 {
-    pub header: super::CommonLoginRequestHeader,
     pub pubkey: String,
     pub sign_jwt_duration: Option<u64>,
 }

@@ -15,6 +15,7 @@ use crate::{
 /// POST `/user/user_info_v1/get`
 #[derive(Debug, Serialize, Deserialize)]
 pub struct GetUserInfoRequestV1 {
+    #[serde(flatten)]
     user_header: UserHeaderV1,
 }
 impl RequestMessage for GetUserInfoRequestV1 {}
