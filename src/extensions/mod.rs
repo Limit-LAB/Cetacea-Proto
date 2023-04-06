@@ -2,6 +2,10 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Serialize, Deserialize, PartialEq, Eq, PartialOrd, Ord)]
 pub enum Extensions {
+    // client methods
+    #[doc = include_str!("../../docs/extensions/client_check_v1.md")]
+    ClientCheckV1,
+
     // user methods
     #[doc = include_str!("../../docs/extensions/user_v1.md")]
     UserV1,

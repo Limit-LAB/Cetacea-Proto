@@ -1,4 +1,5 @@
 //! impl of [`crate::extensions::Extensions::RoomV1`] module.
+//! websocket route: `/ws/room_v1/<roomid>`
 
 use std::collections::BTreeMap;
 
@@ -41,7 +42,7 @@ pub struct CreateRoomResponseV1 {}
 /// may return [`crate::error_code::ErrorCode::InvalidEventId`] if the event id
 /// is invalid.
 ///
-/// POST `/client/room_v1/sync`
+/// POST `/client/room_v1/<roomid>/sync`
 #[derive(Debug, Serialize, Deserialize)]
 pub struct SyncRoomRequestV1 {
     room_id: String,
@@ -65,7 +66,7 @@ pub struct SyncRoomResponseV1 {
 ///
 /// may return [`crate::error_code::ErrorCode::InvalidEventId`] if the event id
 /// is invalid.
-/// POST `/client/room_v1/send_messages`
+/// POST `/client/room_v1/<roomid>/send_messages`
 #[derive(Debug, Serialize, Deserialize)]
 pub struct SendMessagesRequestV1 {
     room_id: String,
@@ -80,7 +81,7 @@ pub struct SendMessagesResponseV1 {}
 /// and for read marker
 /// mainly for streaming
 ///
-/// POST `/client/room_v1/notify`
+/// POST `/client/room_v1/<roomid>/notify`
 #[derive(Debug, Serialize, Deserialize)]
 pub struct NotifyRequestV1 {
     notify_type: NotifyEventsV1,
