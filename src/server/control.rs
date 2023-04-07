@@ -4,28 +4,29 @@ use serde::{Deserialize, Serialize};
 
 use super::id::*;
 
-/// An user in server A want to join a channel in server B.
+/// Request representing users joining a channel on another server
 #[derive(Debug, Serialize, Deserialize)]
 pub struct CrossJoinChannelRequest {
-    /// the server name of the server that the user in.
+    /// the server name of the server that the user in
     from: ServerName,
-    /// the server name of the server that the channel in.
+    /// the server name of the server that the channel in
     to: ServerName,
     channel: ChannelId,
 }
 
+/// Response representing the result of a cross join channel request
 #[derive(Debug, Serialize, Deserialize)]
 pub struct CrossJoinChannelResponse {
-    /// status info (send success or fail).
+    /// status info (send success or fail)
     status: String,
     // info: String,
 }
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct RegisterPublicChannelRequest {
-    /// the server name of the server that the user in.
-    origin: ServerName,
-    /// the user id sent by the application.
+    /// server name of user's homeserver
+    from: ServerName,
+    /// the user id sent by the application
     sender: UserId,
 
     channel: ChannelId,
@@ -33,7 +34,7 @@ pub struct RegisterPublicChannelRequest {
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct RegisterPublicChannelResponse {
-    /// status info (send success or fail).
+    /// status info (send success or fail)
     status: String,
     // info: String,
 }

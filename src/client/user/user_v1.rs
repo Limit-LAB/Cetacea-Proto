@@ -1,9 +1,6 @@
 use serde::{Deserialize, Serialize};
 
-use crate::{
-    extensions::user_v1::{UserHeaderV1, UserInfoV1, UserRecordV1, UserStatusNotifyEventV1},
-    RequestMessage, Response,
-};
+use crate::extensions::user_v1::{UserHeaderV1, UserInfoV1, UserRecordV1, UserStatusNotifyEventV1};
 
 // user info
 
@@ -18,7 +15,7 @@ pub struct GetUserInfoRequestV1 {
     #[serde(flatten)]
     user_header: UserHeaderV1,
 }
-impl RequestMessage for GetUserInfoRequestV1 {}
+crate::impl_request!(GetUserInfoRequestV1);
 
 /// | limit | yes/no |
 /// | --- | --- |
@@ -31,7 +28,7 @@ pub struct SetUserInfoRequestV1 {
     #[serde(flatten)]
     user_info: UserInfoV1,
 }
-impl RequestMessage for SetUserInfoRequestV1 {}
+crate::impl_request!(SetUserInfoRequestV1);
 
 /// mainly used for streaming client
 /// POST `/user/status_notify_v1/notify`
@@ -45,11 +42,11 @@ pub struct GetUserInfoResponseV1 {
     #[serde(flatten)]
     user_info: UserInfoV1,
 }
-impl Response for GetUserInfoResponseV1 {}
+crate::impl_response!(GetUserInfoResponseV1);
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct SetUserInfoResponseV1 {}
-impl Response for SetUserInfoResponseV1 {}
+crate::impl_response!(SetUserInfoResponseV1);
 
 // user record
 
@@ -61,7 +58,7 @@ impl Response for SetUserInfoResponseV1 {}
 /// POST `/user/user_record_v1/get`
 #[derive(Debug, Serialize, Deserialize)]
 pub struct GetSelfUserRecordRequestV1 {}
-impl RequestMessage for GetSelfUserRecordRequestV1 {}
+crate::impl_request!(GetSelfUserRecordRequestV1);
 
 /// | limit | yes/no |
 /// | --- | --- |
@@ -74,15 +71,15 @@ pub struct SetSelfUserRecordRequestV1 {
     #[serde(flatten)]
     user_record: UserRecordV1,
 }
-impl RequestMessage for SetSelfUserRecordRequestV1 {}
+crate::impl_request!(SetSelfUserRecordRequestV1);
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct GetSelfUserRecordResponseV1 {
     #[serde(flatten)]
     user_record: UserRecordV1,
 }
-impl Response for GetSelfUserRecordResponseV1 {}
+crate::impl_response!(GetSelfUserRecordResponseV1);
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct SetSelfUserRecordResponseV1 {}
-impl Response for SetSelfUserRecordResponseV1 {}
+crate::impl_response!(SetSelfUserRecordResponseV1);

@@ -78,11 +78,14 @@ pub struct MessagePartV1 {
 macro_rules! impl_message_v1 {
     ($t:ty) => {
         impl TryFrom<MessagePartV1> for $t {
-            type Error = anyhow::Error;
+            type Error = $crate::Error;
 
             fn try_from(value: MessagePartV1) -> Result<Self, Self::Error> {
-                if value.type_ != std::any::type_name::<Self>() {
-                    return Err(anyhow::anyhow!("not a text message part"));
+                if value.type_ != stringify!($t) {
+                    return Err($crate::Error::InvalidMessageType {
+                        expect: stringify!($t),
+                        got: value.type_,
+                    });
                 }
                 serde_json::from_value(value.data).map_err(|e| e.into())
             }
@@ -91,7 +94,7 @@ macro_rules! impl_message_v1 {
         impl From<$t> for MessagePartV1 {
             fn from(t: $t) -> MessagePartV1 {
                 MessagePartV1 {
-                    type_: std::any::type_name::<$t>().to_string(),
+                    type_: stringify!($t).to_string(),
                     data: serde_json::to_value(t).unwrap(),
                 }
             }
@@ -123,6 +126,7 @@ pub struct ReactionMessagePartV1 {
     /// the reaction emoji.
     reaction: String,
 }
+
 impl_message_v1!(ReactionMessagePartV1);
 
 #[derive(Debug, Serialize, Deserialize)]

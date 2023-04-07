@@ -24,15 +24,12 @@ pub struct CreateRoomRequestV1 {
 pub struct CreateRoomResponseV1 {}
 
 /// The sync room request.
-/// one of `from_event_id` `to_event_id` and `limit` must be set.
-/// `from_event_id` and `to_event_id` are exclusive.
-/// `limit` is the max number of events to return.
-/// if only `from_event_id` is set, the server will return the events after
-/// `from_event_id`. if only `to_event_id` is set, the server will return the
-/// events before `to_event_id`. if both `from_event_id` and `to_event_id` are
-/// set, the server will return the events between `from_event_id` and
-/// `to_event_id`. if `limit` is set, the server will return at most recent
-/// events by limit.
+///
+/// `limit` is the max number of events to return. If only `from_event_id` is
+/// set, the server will return the events after `from_event_id`. if only
+/// `to_event_id` is set, the server will return the events before
+/// `to_event_id`. if both `from_event_id` and `to_event_id` are set, the server
+/// will return the events between `from_event_id` and `to_event_id`. .
 ///
 /// | limit | yes/no |
 /// | --- | --- |
@@ -46,9 +43,24 @@ pub struct CreateRoomResponseV1 {}
 #[derive(Debug, Serialize, Deserialize)]
 pub struct SyncRoomRequestV1 {
     room_id: String,
-    from_event_id: Option<String>,
-    to_event_id: Option<String>,
-    limit: Option<u32>,
+    #[serde(flatten)]
+    sync_range: SyncRoomRange,
+}
+
+#[derive(Debug, Serialize, Deserialize)]
+pub enum SyncRoomRange {
+    From {
+        from_event_id: String,
+        limit: Option<u32>,
+    },
+    To {
+        to_event_id: String,
+        limit: Option<u32>,
+    },
+    Between {
+        from_event_id: String,
+        to_event_id: String,
+    },
 }
 
 /// The sync room response.

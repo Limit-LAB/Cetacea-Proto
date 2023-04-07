@@ -1,16 +1,13 @@
 use serde::{Deserialize, Serialize};
 
-use crate::{
-    extensions::{CheckSupportedExtensionsRequest, CheckSupportedExtensionsResponse},
-    RequestMessage, Response,
-};
+use crate::extensions::{CheckSupportedExtensionsRequest, CheckSupportedExtensionsResponse};
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct ClientCheckServerRequestV1 {
     pub server_addr: String,
     pub check_extensions: CheckSupportedExtensionsRequest,
 }
-impl RequestMessage for ClientCheckServerRequestV1 {}
+crate::impl_request!(ClientCheckServerRequestV1);
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct ClientCheckServerResponseV1 {
@@ -20,4 +17,4 @@ pub struct ClientCheckServerResponseV1 {
     pub server_latency: u64,
     pub supported_extensions: CheckSupportedExtensionsResponse,
 }
-impl Response for ClientCheckServerResponseV1 {}
+crate::impl_response!(ClientCheckServerResponseV1);

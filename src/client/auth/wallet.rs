@@ -6,7 +6,7 @@
 //! | rate limit   | yes |
 //! | require auth | no  |
 //!
-//! may return [`crate::error_code::ErrorCode::UnsupportWallet`] if the wallet
+//! may return [`crate::error_code::ErrorCode::UnsupportedWallet`] if the wallet
 //! login is not supported.
 
 use serde::{Deserialize, Serialize};

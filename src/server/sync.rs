@@ -5,6 +5,8 @@ use serde::{Deserialize, Serialize};
 use super::id::*;
 
 #[derive(Debug, Serialize, Deserialize)]
+#[serde(transparent)]
+#[repr(transparent)]
 struct Signature(pub String);
 
 #[derive(Debug, Serialize, Deserialize)]
@@ -22,13 +24,13 @@ pub struct MessagePushRequest {
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct MessagePushResponse {
-    /// status info (send success or fail).
+    /// status info (send success or fail)
     status: String,
 }
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct GetMissingMessageRequest {
-    /// the server name of the server that the user in.
+    /// the server name of the server that the user in
     origin: ServerName,
     /// users who want to get message
     receiver: UserId,
