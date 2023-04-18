@@ -61,6 +61,9 @@ pub enum SyncRoomRange {
         from_event_id: String,
         to_event_id: String,
     },
+    Recent {
+        limit: u32,
+    },
 }
 
 /// The sync room response.
@@ -87,7 +90,9 @@ pub struct SendMessagesRequestV1 {
 
 /// The send messages response.
 #[derive(Debug, Serialize, Deserialize)]
-pub struct SendMessagesResponseV1 {}
+pub struct SendMessagesResponseV1 {
+    event_id: String,
+}
 
 /// for last shown in room
 /// and for read marker
