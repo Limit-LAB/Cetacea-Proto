@@ -37,8 +37,13 @@ pub struct UserInfoV1 {
     pub bio: UserInfoFieldV1<String>,
     /// the user visibility.
     pub visibility: VisibilityV1,
-    /// add to group
+    /// if the user is letting others add them to group.
+    /// ROOM V1
     pub add_to_group: VisibilityV1,
+    /// last login time
+    pub last_login_time: UserInfoFieldV1<u64>,
+    /// last update time
+    pub last_update_time: UserInfoFieldV1<u64>,
     /// externsion
     #[serde(flatten)]
     pub extension: BTreeMap<String, UserInfoFieldV1<serde_json::Value>>,
@@ -87,14 +92,13 @@ struct LastReadV1 {
 pub struct Friend {
     alias: String,
     user: UserInfoV1,
-    last_login_ts: u64,
     friend_since: u64,
     tags: Vec<String>,
 }
 
+// TODO: reform this to a more general way.
 #[derive(Debug, Serialize, Deserialize)]
 pub struct UserRecordV1 {
-    last_login_ts: u64,
     pinged_rooms: Vec<String>,
     last_reads: Vec<LastReadV1>,
     user_info: UserInfoV1,

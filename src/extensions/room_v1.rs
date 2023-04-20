@@ -5,6 +5,16 @@ use serde::{Deserialize, Serialize};
 use super::user_v1::UserHeaderV1;
 
 #[derive(Debug, Serialize, Deserialize)]
+pub struct CreateRoomInfoV1 {
+    pub room_version: String,
+    pub name: String,
+    pub description: String,
+    pub avatar: String,
+    pub join_rule: RoomJoinRuleV1,
+    pub join_restriction: Vec<RoomJoinRestrictionV1>,
+}
+
+#[derive(Debug, Serialize, Deserialize)]
 pub struct RoomInfoV1 {
     pub room_id: String,
     pub room_version: String,
