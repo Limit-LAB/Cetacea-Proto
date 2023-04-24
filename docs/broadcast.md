@@ -2,7 +2,7 @@
 
 event 会通过 room 作为 topic 使用 orkas 的 pubsub 机制进行广播。
 
-每次广播都会携带一个 server id，用于标识这个广播是来自哪个 server 的。
+每次广播都会携带一个 servername，用于标识这个广播是来自哪个 server 的。
 
 ## 最长链原则
 
