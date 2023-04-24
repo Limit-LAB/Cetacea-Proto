@@ -1,6 +1,6 @@
 # Name Resolution
 
-Every node has two hostnames: a *Canonical Hostname* and a *Servername*. Both are valid hostnames that can be used to resolve to IP with DNS. The difference is that the Canonical Hostname is where that we can actually connect to the server while the Servername may only be used for identification purposes, i.e., users will have servername in their username.
+Every node has two hostnames: a *Canonical Hostname* and a *Servername*. Both are valid hostnames that can be used to resolve to IP with DNS. The difference is that the Canonical Hostname is where we can actually connect to the server while the servername may only be used for identification purposes, i.e., users will have the servername of their homeserver in their username.
 
 ## Resolution
 
