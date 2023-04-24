@@ -4,7 +4,8 @@ use crate::extensions::{CheckSupportedExtensionsRequest, CheckSupportedExtension
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct ClientCheckServerRequestV1 {
-    pub server_addr: String,
+    pub server_name: String,
+    pub canonical_name: String,
     pub check_extensions: CheckSupportedExtensionsRequest,
 }
 crate::impl_request!(ClientCheckServerRequestV1);
